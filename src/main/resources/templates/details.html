@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Kanji Details</title>
+    <meta charset="UTF-8">
+    <style>
+        /* Add your own styles here */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            color: #333;
+            padding: 20px;
+            margin: 0;
+        }
+        h1, h2 {
+            margin-top: 0;
+        }
+        ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        li {
+            margin-bottom: 10px;
+        }
+        .reading {
+            font-style: italic;
+        }
+        .usage {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+<h1>Kanji Details for <span th:text="${kanjiDetails.kanji}"></span></h1>
+<div>
+    <h2>Onyomi Readings:</h2>
+    <ul>
+        <li th:each="reading : ${kanjiDetails.onyomiReadings}">
+            <span th:text="${reading.kana}" class="reading"></span> (<span th:text="${reading.romaji}" class="reading"></span>)
+        </li>
+    </ul>
+</div>
+<div>
+    <h2>Kunyomi Readings:</h2>
+    <ul>
+        <li th:each="reading : ${kanjiDetails.kunyomiReadings}">
+            <span th:text="${reading.kana}" class="reading"></span> (<span th:text="${reading.romaji}" class="reading"></span>)
+        </li>
+    </ul>
+</div>
+<div>
+    <h2>Radicals:</h2>
+    <ul>
+        <li th:each="radical : ${kanjiDetails.radicals}" th:text="${radical}"></li>
+    </ul>
+</div>
+<div>
+    <h2>English Translations:</h2>
+    <ul>
+        <li th:each="translation : ${kanjiDetails.englishTranslations}" th:text="${translation}"></li>
+    </ul>
+</div>
+<div>
+    <h2>History:</h2>
+    <p th:text="${kanjiDetails.history}"></p>
+</div>
+<div>
+    <h2>Common Usages:</h2>
+    <ul>
+        <li th:each="usage : ${kanjiDetails.commonUsages}">
+            <span th:text="${usage.usage}" class="usage"></span> (<span th:text="${usage.kana}" class="reading"></span> - <span th:text="${usage.romaji}" class="reading"></span>)
+        </li>
+    </ul>
+</div>
+<div>
+    <h2>Mnemonic Suggestions:</h2>
+    <ul>
+        <li th:each="mnemonic : ${kanjiDetails.mnemonicSuggestions}" th:text="${mnemonic}"></li>
+    </ul>
+</div>
+</body>
+</html>
